@@ -1,0 +1,137 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/*** BASIC COLORS***/
+:root {
+    --white: hsl(0, 0%, 100%);
+    --light-pink: hsl(275, 100%, 97%);
+    --grayish-purple: hsl(292, 16%, 49%);
+    --dark-purple: hsl(292, 42%, 14%);
+    --Dark-Grey: hsl(187, 24%, 22%);
+}
+
+body {
+    font-family: "Work Sans", sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+}
+
+.container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('img/background-pattern-desktop.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.accordion {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 550px;
+    min-height: 300px;
+    background-color: var(--light-pink);
+    padding: 2rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+}
+
+.content {
+    border-bottom: .5px solid var(--Dark-Grey);
+}
+
+.question {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    align-items: center;
+    cursor: pointer;
+}
+
+.question:hover {
+    color: var(--grayish-purple);
+}
+
+.question::after {
+    position: absolute;
+    content: '';
+    background-image: url('img/icon-plus.svg');
+    background-size: cover;
+    background-position: center;
+    display: block;
+    right: 1rem;
+    height: 20px;
+    width: 20px;
+}
+
+.content.active .question  {
+    transition: .5s;
+}
+
+.content.content.active .question::after {
+    background-image: url('img/icon-minus.svg');
+}
+
+.answer {
+    height: 0px;
+    overflow: hidden;
+    transition: .5s;
+}
+.content.active .answer  {
+    height: 100px;
+}
+
+.attribution { font-size: 11px; text-align: center; }
+.attribution a { color: hsl(228, 45%, 44%); }
+
+
+/* MEDIA QUERY**/
+
+@media only screen and (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+
+    .container {
+        background-image: url('img/background-pattern-mobile.svg');
+    }
+    
+    .accordion {
+        width: 80vw;
+        padding: 1rem;
+    }
+    .question {
+        gap: .5rem;
+        overflow-wrap: break-word;
+    }
+
+    .question::after {
+        right: 0;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    body {
+        font-size: 12px;
+    }
+
+    .accordion {
+        width: 90vw;
+    }
+}
